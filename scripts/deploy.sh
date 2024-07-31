@@ -2,30 +2,16 @@
 
 set -e
 
+# Use GitHub context variables if inputs are not provided
+COMMIT_HASH=${COMMIT_HASH:-$GITHUB_SHA}
+MESSAGE=${MESSAGE:-$GITHUB_MESSAGE}
+AUTHOR_NAME=${AUTHOR_NAME:-$GITHUB_AUTHOR}
+COMMIT_TIME=${COMMIT_TIME:-$GITHUB_COMMIT_TIME}
+
 DEVTRON_URL=${DEVTRON_URL}
 DEVTRON_API_TOKEN=${DEVTRON_API_TOKEN}
 IMAGE=${IMAGE}
 ID=${ID}
-COMMIT_HASH=${COMMIT_HASH}
-MESSAGE=${MESSAGE}
-AUTHOR_NAME=${AUTHOR_NAME}
-COMMIT_TIME=${COMMIT_TIME}
-
-if [ -z "$COMMIT_HASH" ]; then
-  COMMIT_HASH=""
-fi
-
-if [ -z "$MESSAGE" ]; then
-  MESSAGE=""
-fi
-
-if [ -z "$AUTHOR_NAME" ]; then
-  AUTHOR_NAME=""
-fi
-
-if [ -z "$COMMIT_TIME" ]; then
-  COMMIT_TIME=""
-fi
 
 jsonData=$(cat <<EOF
 {
