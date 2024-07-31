@@ -1,2 +1,2 @@
 # push-image-action
-GitHub Actions Plugins to Deploy through Devtron
+GitHub Actions Plugins for Continous Integration with Devtron
