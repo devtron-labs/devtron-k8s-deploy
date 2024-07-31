@@ -1,0 +1,23 @@
+name: Push Image to Devtron
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Push Image to Devtron
+      uses: ./  # Uses the local action defined in the repository
+      with:
+        DEVTRON_URL: ${{ secrets.DEVTRON_URL }}
+        DEVTRON_API_TOKEN: ${{ secrets.DEVTRON_API_TOKEN }}
+        IMAGE: ${{ secrets.IMAGE }}
+        ID: ${{ secrets.ID }}
+        COMMIT_HASH: ${{ secrets.COMMIT_HASH }}
+        MESSAGE: ${{ secrets.MESSAGE }}
+        AUTHOR_NAME: ${{ secrets.AUTHOR_NAME }}
+        COMMIT_TIME: ${{ secrets.COMMIT_TIME }}

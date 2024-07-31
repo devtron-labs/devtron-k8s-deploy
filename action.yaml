@@ -1,0 +1,45 @@
+name: 'Devtron Deploy Action'
+description: 'An action to deploy using Devtron with optional commit details'
+author: 'Your Name'
+inputs:
+  DEVTRON_URL:
+    description: 'The URL of the Devtron instance'
+    required: true
+  DEVTRON_API_TOKEN:
+    description: 'The API token for Devtron'
+    required: true
+  IMAGE:
+    description: 'The Docker image to be deployed'
+    required: true
+  ID:
+    description: 'The ID for the Devtron orchestrator'
+    required: true
+  COMMIT_HASH:
+    description: 'The commit hash (optional)'
+    required: false
+  MESSAGE:
+    description: 'The commit message (optional)'
+    required: false
+  AUTHOR_NAME:
+    description: 'The author name of the commit (optional)'
+    required: false
+  COMMIT_TIME:
+    description: 'The commit time (optional)'
+    required: false
+runs:
+  using: 'composite'
+  steps:
+    - run: ./scripts/deploy.sh
+      shell: bash
+      env:
+        DEVTRON_URL: ${{ inputs.DEVTRON_URL }}
+        DEVTRON_API_TOKEN: ${{ inputs.DEVTRON_API_TOKEN }}
+        IMAGE: ${{ inputs.IMAGE }}
+        ID: ${{ inputs.ID }}
+        COMMIT_HASH: ${{ inputs.COMMIT_HASH }}
+        MESSAGE: ${{ inputs.MESSAGE }}
+        AUTHOR_NAME: ${{ inputs.AUTHOR_NAME }}
+        COMMIT_TIME: ${{ inputs.COMMIT_TIME }}
+branding:
+  icon: 'rocket'
+  color: 'blue'
